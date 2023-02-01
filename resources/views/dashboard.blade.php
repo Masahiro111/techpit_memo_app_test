@@ -19,7 +19,7 @@
                                     xxxさん、こんにちは。
                                 </div>
                                 <div class="pr-1">
-                                    <a href="" class="btn btn-success"><i class="fas fa-plus"></i></a>
+                                    <a href="{{ route('dashboard.store') }}" class="btn btn-success">Add memo</i></a>
                                     <a href="{{ route('login') }}" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i></a>
                                 </div>
                             </div>

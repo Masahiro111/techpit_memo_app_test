@@ -29,7 +29,7 @@
                             <div class="left-memo-list list-group-flush p-0">
                                 @forelse ($memos as $memo)
                                 <a
-                                   href=""
+                                   href="{{ route('dashboard.select', ['id' => $memo->id]) }}"
                                    class="border-b-2 block list-group-item list-group-item-action">
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1">{{ $memo->title }} </h5>
@@ -52,15 +52,22 @@
                         </div>
 
                         <div class="w-auto col-9 h-100">
+                            @if ($select_memo)
                             <form class="w-100 h-100" method="post">
-                                <input type="hidden" name="edit_id" value="" />
+                                @csrf
+                                <input type="hidden" name="edit_id" value="{{ $select_memo->id }}" />
                                 <div id="memo-menu">
-                                    <button type="button" class="btn btn-danger" formaction=""><i class="fas fa-trash-alt"></i></button>
-                                    <button type="button" class="btn btn-success" formaction=""><i class="fas fa-save"></i></button>
+                                    <button type="submit" class="btn btn-danger" formaction=""><i class="fas fa-trash-alt"></i></button>
+                                    <button type="submit" class="btn btn-success" formaction=""><i class="fas fa-save"></i></button>
                                 </div>
-                                <input type="text" id="memo-title" name="edit_title" placeholder="タイトルを入力する..." value="" />
-                                <textarea id="memo-content" name="edit_content" placeholder="内容を入力する..."></textarea>
+                                <input type="text" id="memo-title" name="edit_title" placeholder="タイトルを入力する..." value="{{ $select_memo->title }}" />
+                                <textarea id="memo-content" name="edit_content" placeholder="内容を入力する...">{{ $select_memo->content }}</textarea>
                             </form>
+                            @else
+                            <div class="mt-3 alert alert-info">
+                                <i class="fas fa-info-circle"></i>メモを新規作成するか選択してください。
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

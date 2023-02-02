@@ -15,7 +15,9 @@ class MemoController extends Controller
             ->latest()
             ->get();
 
-        return view('dashboard', compact('memos'));
+        $select_memo = session()->get('select_memo');
+
+        return view('dashboard', compact('memos', 'select_memo'));
     }
 
     public function store()
@@ -26,6 +28,15 @@ class MemoController extends Controller
                 'title' => '新規メモ',
                 'content' => 'content',
             ]);
+
+        return to_route('dashboard');
+    }
+
+    public function select(Request $request)
+    {
+        $memo = Memo::query()
+            ->findOrFail($request->id);
+        session()->put('select_memo', $memo);
 
         return to_route('dashboard');
     }

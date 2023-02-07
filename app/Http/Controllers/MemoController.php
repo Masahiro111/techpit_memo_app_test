@@ -40,19 +40,4 @@ class MemoController extends Controller
 
         return to_route('dashboard');
     }
-
-    public function update(Request $request)
-    {
-        $memo = Memo::find($request->edit_id);
-        $memo->title = $request->edit_title;
-        $memo->content = $request->edit_content;
-
-        if ($memo->update()) {
-            session()->put('select_memo', $memo);
-        } else {
-            session()->remove('select_memo');
-        }
-
-        return to_route('dashboard');
-    }
 }

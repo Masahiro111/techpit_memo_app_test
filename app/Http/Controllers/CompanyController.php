@@ -48,8 +48,7 @@ class CompanyController extends Controller
         Company::query()
             ->create($validated);
 
-        return to_route('companies.index')
-            ->with('success', 'Company has been created successfully');
+        return to_route('');
     }
 
     /**
@@ -60,7 +59,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        return view('companies.show', compact('company'));
+        //
     }
 
     /**
@@ -71,7 +70,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        return view('companies.edit', compact('company'));
+        //
     }
 
     /**
@@ -83,16 +82,7 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'address' => 'required',
-        ]);
-
-        $company->update($validated);
-
-        return to_route('companies.index')
-            ->with('success', 'Company Has Been updated successfully');
+        //
     }
 
     /**
@@ -103,9 +93,6 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        $company->delete();
-
-        return to_route('companies.index')
-            ->with('success', 'Company has been deleted successfully');
+        //
     }
 }

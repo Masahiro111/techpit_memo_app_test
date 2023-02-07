@@ -10,12 +10,7 @@ class MemoController extends Controller
 {
     public function index()
     {
-        $memos = Memo::query()
-            ->where('user_id', Auth::id())
-            ->latest()
-            ->get();
-
-        return view('dashboard', compact('memos'));
+        return view('dashboard');
     }
 
     public function store()

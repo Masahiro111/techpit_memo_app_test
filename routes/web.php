@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/add', [MemoController::class, 'store'])->name('dashboard.store');
     Route::get('/dashboard/select', [MemoController::class, 'select'])->name('dashboard.select');
     Route::post('/dashboard/update', [MemoController::class, 'update'])->name('dashboard.update');
+    Route::post('/dashboard/delete', [MemoController::class, 'delete'])->name('dashboard.delete');
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

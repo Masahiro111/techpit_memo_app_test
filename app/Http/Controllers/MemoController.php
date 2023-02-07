@@ -55,4 +55,12 @@ class MemoController extends Controller
 
         return to_route('dashboard');
     }
+
+    public function delete(Request $request)
+    {
+        Memo::find($request->edit_id)->delete();
+        session()->remove('select_memo');
+
+        return to_route('dashboard');
+    }
 }

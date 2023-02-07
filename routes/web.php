@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::prefix('companies')
+    ->controller(CompanyController::class)
+    ->name('companies.')
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{company}', 'show')->name('show');
+        Route::get('/{company}/edit', 'edit')->name('edit');
+        Route::put('/{company}', 'update')->name('update');
+        Route::delete('/{company}', 'destroy')->name('destroy');
+    });
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -28,4 +42,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
